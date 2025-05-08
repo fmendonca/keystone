@@ -1,11 +1,6 @@
 #!/bin/sh
 set -ex
 
-echo "[*] Esperando o banco responder em ${KEYSTONE_DB_HOST}..."
-until nc -z "${KEYSTONE_DB_HOST}" 3306; do
-  sleep 1
-done
-
 echo "[*] Gerando keystone.conf..."
 cat > /etc/keystone/keystone.conf <<EOF
 [DEFAULT]

@@ -1,12 +1,12 @@
-# Keystone Alpine Container
+# Keystone Container
 
-Container leve baseado em Alpine Linux para o serviço **Keystone (OpenStack Identity)**. Esta imagem instala e configura o Keystone de forma minimalista, utilizando uWSGI e permitindo a configuração por variáveis de ambiente.
+Container leve baseado em Fedora para o serviço **Keystone (OpenStack Identity)**. Esta imagem instala e configura o Keystone de forma minimalista, utilizando uWSGI e permitindo a configuração por variáveis de ambiente.
 
 ---
 
 ## 📦 Imagem
 
-- **Base:** Alpine 3.21.3
+- **Base:** Fedora 42
 - **Keystone version:** 25.0.0 (2025.1 release)
 - **Gerenciado via:** uWSGI
 - **Banco de dados esperado:** MariaDB (MySQL)
@@ -18,7 +18,7 @@ Container leve baseado em Alpine Linux para o serviço **Keystone (OpenStack Ide
 Clone este repositório e execute:
 
 ```bash
-podman build -f keystone-containerfile -t keystone:alpine-3.21.3 .
+podman build -f keystone-containerfile -t keystone:tag .
 ```
 
 ---
@@ -46,7 +46,7 @@ podman run -d --name keystone \
   -e KEYSTONE_HOSTNAME=fqdn_host \
   -v /opt/keystone:/var/lib/keystone:Z \
   -p 5000:5000 \
-  keystone:alpine-3.21.3
+  keystone:tag
 ```
 
 ---
