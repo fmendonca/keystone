@@ -41,4 +41,4 @@ keystone-manage bootstrap \
   --bootstrap-region-id "${KEYSTONE_REGION}"
 
 echo "[*] Iniciando Keystone com Apache..."
-exec httpd -DFOREGROUND
+exec /usr/sbin/httpd -DFOREGROUND
