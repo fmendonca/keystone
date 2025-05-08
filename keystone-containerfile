@@ -1,0 +1,21 @@
+FROM alpine:3.21.3
+
+ENV KEYSTONE_VERSION=25.0.0 \
+    PYTHONUNBUFFERED=1
+
+RUN apk add --no-cache python3 py3-pip libffi-dev gcc \
+    musl-dev python3-dev libxml2-dev libxslt-dev \
+    mariadb-client curl bash git
+
+RUN pip install --upgrade pip --break-system-packages \
+    && pip install keystone==$KEYSTONE_VERSION uwsgi --break-system-packages
+   
+
+RUN mkdir -p /etc/keystone /var/log/keystone /var/lib/keystone
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+EXPOSE 5000
+
+ENTRYPOINT ["/entrypoint.sh"]
