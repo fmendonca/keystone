@@ -1,0 +1,4 @@
+#!/usr/bin/env python3
+import sys
+from keystone.server import wsgi as wsgi_server
+application = wsgi_server.initialize_public_application()
