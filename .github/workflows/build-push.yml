@@ -28,7 +28,7 @@ jobs:
     - name: Build Docker image
       run: |
         echo "Building image with tag: ${REF_NAME}"
-        docker build -f ovndebian-containerfile \
+        docker build -f keystone-containerfile \
           -t ghcr.io/${{ github.repository }}:${REF_NAME} .
 
     - name: Push Docker image to GHCR
