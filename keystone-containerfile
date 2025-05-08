@@ -5,17 +5,20 @@ ENV KEYSTONE_VERSION=25.0.0 \
 
 RUN apk add --no-cache python3 py3-pip libffi-dev gcc \
     musl-dev python3-dev libxml2-dev libxslt-dev \
-    mariadb-client curl bash git
+    mariadb-client curl bash git apache2 apache2-utils \
+    apache2-proxy apache2-http2 py3-mod-wsgi
 
 RUN pip install --upgrade pip --break-system-packages \
-    && pip install keystone==$KEYSTONE_VERSION uwsgi --break-system-packages
-   
+ && pip install keystone==$KEYSTONE_VERSION pymysql --break-system-packages
 
 RUN mkdir -p /etc/keystone /var/log/keystone /var/lib/keystone
 
 COPY entrypoint.sh /entrypoint.sh
+COPY keystone-httpd.conf /etc/apache2/conf.d/keystone.conf
+
 RUN chmod +x /entrypoint.sh
 
 EXPOSE 5000
 
 ENTRYPOINT ["/entrypoint.sh"]
+

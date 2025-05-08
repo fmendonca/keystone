@@ -40,5 +40,5 @@ keystone-manage bootstrap \
   --bootstrap-public-url http://${KEYSTONE_HOSTNAME}:5000/v3/ \
   --bootstrap-region-id "${KEYSTONE_REGION}"
 
-echo "[*] Iniciando Keystone com uWSGI..."
-exec uwsgi --http :5000 --wsgi-file /usr/local/bin/keystone-wsgi-public --processes 4 --threads 4
+echo "[*] Iniciando Keystone com Apache..."
+exec httpd -DFOREGROUND
