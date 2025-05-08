@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -ex
 
 echo "[*] Esperando o banco responder em ${KEYSTONE_DB_HOST}..."
 until nc -z "${KEYSTONE_DB_HOST}" 3306; do
